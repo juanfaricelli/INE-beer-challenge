@@ -23,3 +23,6 @@ To Start Server:
 Navigate to
 
 `http://localhost:8080/`
+
+## Components List
+- App
