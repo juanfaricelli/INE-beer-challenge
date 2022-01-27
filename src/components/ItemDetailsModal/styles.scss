@@ -1,0 +1,50 @@
+.item-details-modal {
+  
+  &__container {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.1s ease-out;
+    z-index: 3;
+    &-background {
+      padding-top: 60px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.4);
+    }
+    &--visible {
+      visibility: visible;
+      opacity: 1;  
+    }
+  }
+  
+  &-dialog {
+    background-color: white;
+    width: 90%;
+    max-width: 600px;
+    max-height: 600px;
+    padding: 20px;
+    border-radius: 20px;
+    margin: auto;
+    display: flex;
+    flex-flow: column;
+    
+    &__button-close {
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    &__content {
+      display: flex;
+      justify-content: flex-start;
+      &-image {
+        width: 35%;
+        text-align: center;
+      }
+      &-information {
+        width: fit-content;
+      }
+    }
+  }
+}
