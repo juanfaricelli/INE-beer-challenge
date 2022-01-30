@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
+import Accordion from '../Accordion';
 
 import './styles.scss';
 import mockData from '../Item/item.json';
+
+import ItemDetailsShort from '../ItemDetailsShort';
 
 const ItemDetailsModal = () => {
   const [showDetails, setShowDetails] = useState(true);
@@ -33,23 +37,12 @@ const ItemDetailsModal = () => {
     const subclassname = `${classname}-dialog`;
     const contentClassname = `${subclassname}__content`;
 
-    const InfoBlock = ({ title, value }) => (
-      <div className="item__details--data">
-        <div className="item__details--data-title">{title}</div>
-        <div className="item__details--data-value">{value}</div>
-      </div>
+    const arrayDataParser = (arrayData) => (
+      Array.from(new Set(arrayData.map((item) => item.name))).join(', ')
     );
 
-    const malts = Array.from(
-      new Set(
-        ingredients.malt.map((malt) => malt.name),
-      ),
-    ).join(', ');
-    const hops = Array.from(
-      new Set(
-        ingredients.hops.map((hop) => hop.name),
-      ),
-    ).join(', ');
+    const malts = arrayDataParser(ingredients.malt);
+    const hops = arrayDataParser(ingredients.hops);
     const { yeast } = ingredients;
 
     return (
@@ -61,39 +54,50 @@ const ItemDetailsModal = () => {
         onKeyPress={(e) => e.stopPropagation()}
       >
         <div className={`${subclassname}__button-close`}>
-          <button type="button">X</button>
+          <button type="button" onClick={closeModal}>X</button>
         </div>
         <div className={`${subclassname}__content`}>
           <div className={`${contentClassname}-image`}>
             <img src={imageUrl} alt={name} height="300" />
           </div>
           <div className={`${contentClassname}-information`}>
-            <div className={`${contentClassname}-title`}>{name}</div>
-            <div className={`${contentClassname}-description`}>
-              {/* <p>{description}</p>
-              <p>{`TIPS: ${brewersTips}`}</p> */}
-            </div>
-            <div className={`${contentClassname}-characteristic`}>
-              <InfoBlock title="IBU" value={ibu} />
-              <InfoBlock title="OG" value={targetOg} />
-              <InfoBlock title="ABV" value={`${abv}%`} />
-            </div>
-            <div className={`${contentClassname}-ingredients`}>
-              <p>Colours</p>
-              <p>{ebc}</p>
-              ---
-              <p>Malts</p>
-              <p>{`${malts}.`}</p>
-              ---
-              <p>Hops</p>
-              <p>{`${hops}.`}</p>
-              ---
-              <p>yeast</p>
-              <p>{yeast}</p>
-              ---
-              <p>style</p>
-              <p>{tagline}</p>
-            </div>
+            <Accordion>
+              <Accordion.Item>
+                <Accordion.Header>
+                  <div className={`${contentClassname}-title`}>{name}</div>
+                </Accordion.Header>
+                <Accordion.Content>
+                  <div className={`${contentClassname}-description`}>
+                    <p>{description}</p>
+                    <p>{`TIPS: ${brewersTips}`}</p>
+                  </div>
+                  <ItemDetailsShort {...{ ibu, targetOg, abv }} />
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  Brew Sheet
+                </Accordion.Header>
+                <Accordion.Content>
+                  <div className={`${contentClassname}-ingredients`}>
+                    <p>Colours</p>
+                    <p>{ebc}</p>
+                    ---
+                    <p>Malts</p>
+                    <p>{`${malts}.`}</p>
+                    ---
+                    <p>Hops</p>
+                    <p>{`${hops}.`}</p>
+                    ---
+                    <p>yeast</p>
+                    <p>{yeast}</p>
+                    ---
+                    <p>style</p>
+                    <p>{tagline}</p>
+                  </div>
+                </Accordion.Content>
+              </Accordion.Item>
+            </Accordion>
           </div>
         </div>
       </div>

@@ -33,21 +33,6 @@
     font-size: xx-large;
   }
 
-  &__details {
-    &--short {
-      display: flex;
-      justify-content: space-around;
-      width: 60%;
-      margin: 10px 0;
-    }
-    &--data {
-      text-align: center;
-      span:first-child {
-        font-weight: 900;
-      }
-    }
-  }
-
   .button {
     background: #000000;
     // background-image: -webkit-linear-gradient(top, #000000, #787878);
