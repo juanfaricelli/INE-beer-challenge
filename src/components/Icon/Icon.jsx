@@ -1,5 +1,5 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { string, number, oneOfType } from 'prop-types';
 
 import Icons from './icons';
 
@@ -16,8 +16,8 @@ const Icon = ({ icon, color, width, height, className }) => {
 Icon.propTypes = {
   icon: string.isRequired,
   color: string,
-  width: string,
-  height: string,
+  width: oneOfType([string, number]),
+  height: oneOfType([string, number]),
   className: string,
 };
 

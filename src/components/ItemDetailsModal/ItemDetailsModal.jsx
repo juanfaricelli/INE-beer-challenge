@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { ItemsContext } from '../../api/context/itemContext';
 import ItemDetailsShort from '../ItemDetailsShort';
 import Accordion from '../Accordion';
+import EBCColor from '../EBCColor';
 
 import './styles.scss';
 
@@ -41,7 +42,7 @@ const ItemDetailsModal = ({ showModal, setShowModal }) => {
     const { yeast } = ingredients;
     const BrewSheetDetails = ({ title, value, isLast }) => (
       <>
-        <p>{title}</p>
+        <p className={`${contentClassname}-ingredients--title`}>{title}</p>
         <p>{value}</p>
         {!isLast && <hr />}
       </>
@@ -82,7 +83,8 @@ const ItemDetailsModal = ({ showModal, setShowModal }) => {
                 </Accordion.Header>
                 <Accordion.Content>
                   <div className={`${contentClassname}-ingredients`}>
-                    <BrewSheetDetails title="Colours" value={ebc} />
+                    <EBCColor colorNumber={ebc} />
+                    <hr />
                     <BrewSheetDetails title="Malts" value={`${malts}.`} />
                     <BrewSheetDetails title="Hops" value={`${hops}.`} />
                     <BrewSheetDetails title="Yeast" value={yeast} />

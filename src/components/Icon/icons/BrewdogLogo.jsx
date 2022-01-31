@@ -1,5 +1,5 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { string, number, oneOfType } from 'prop-types';
 
 const BrewdogLogo = ({ color, width, height }) => (
   <svg
@@ -18,14 +18,14 @@ const BrewdogLogo = ({ color, width, height }) => (
 
 BrewdogLogo.propTypes = {
   color: string,
-  width: string,
-  height: string,
+  width: oneOfType([string, number]),
+  height: oneOfType([string, number]),
 };
 
 BrewdogLogo.defaultProps = {
   color: '#000',
-  width: '28',
-  height: '28',
+  width: 28,
+  height: 28,
 };
 
 export default BrewdogLogo;

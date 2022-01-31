@@ -19,8 +19,8 @@ const Header = ({ children, itemNumber, setIsActiveItem }) => (
 
 Header.propTypes = {
   children: arrayOf(node).isRequired,
-  itemNumber: func.isRequired,
-  setIsActiveItem: number.isRequired,
+  itemNumber: number.isRequired,
+  setIsActiveItem: func.isRequired,
 };
 
 const Content = ({ children, isActiveItem, itemNumber }) => {
