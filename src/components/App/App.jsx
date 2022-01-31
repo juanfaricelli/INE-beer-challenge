@@ -1,23 +1,32 @@
-import React, { useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+
+import BeersAPI from '../../api/beersApi';
+import Header from '../Header';
+import ItemsContainer from '../ItemsContainer';
+import ItemsProvider from '../../api/context/itemContext';
 
 import './styles.scss';
 
 const App = () => {
-  const [loaded, setLoaded] = useState(false);
+  const [beersList, setBeersList] = useState([]);
 
-  const LOADING_MESSAGE = 'Loading...';
-  const ERROR_MESSAGE = 'Error getting data from server, please try again later...';
+  useEffect(() => {
+    BeersAPI.getAllBeers()
+      .then((res) => {
+        setBeersList(res);
+      })
+      .catch((error) => {
+        console.log(`BeersAPI.getAllBeers Request Failed. ERROR: ${JSON.stringify(error)}`);
+      });
+  }, []);
 
   return (
-    <Router>
+    <ItemsProvider>
       <div className="app__container" data-testid="app">
-        ...
+        <Header />
+        <ItemsContainer itemList={beersList} />
       </div>
-    </Router>
+    </ItemsProvider>
   );
 };
 

@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
+import { ItemsContext } from '../../api/context/itemContext';
+import ItemDetailsShort from '../ItemDetailsShort';
 import Accordion from '../Accordion';
 
 import './styles.scss';
-import mockData from '../Item/item.json';
 
-import ItemDetailsShort from '../ItemDetailsShort';
-
-const ItemDetailsModal = () => {
-  const [showDetails, setShowDetails] = useState(true);
+const ItemDetailsModal = ({ showModal, setShowModal }) => {
+  const { itemDetailsObj, itemDetails } = useContext(ItemsContext);
   const classname = 'item-details-modal';
 
-  // useEffect(() => {
-  //   setShowDetails();
-  // }, []);
-
   const closeModal = () => {
-    setShowDetails(false);
-    // itemDetails();
+    setShowModal(false);
+    itemDetails();
   };
 
   const ItemDetailsDialog = () => {
@@ -32,7 +27,7 @@ const ItemDetailsModal = () => {
       ebc,
       tagline,
       ingredients,
-    } = mockData;
+    } = itemDetailsObj;
 
     const subclassname = `${classname}-dialog`;
     const contentClassname = `${subclassname}__content`;
@@ -44,6 +39,13 @@ const ItemDetailsModal = () => {
     const malts = arrayDataParser(ingredients.malt);
     const hops = arrayDataParser(ingredients.hops);
     const { yeast } = ingredients;
+    const BrewSheetDetails = ({ title, value, isLast }) => (
+      <>
+        <p>{title}</p>
+        <p>{value}</p>
+        {!isLast && <hr />}
+      </>
+    );
 
     return (
       <div
@@ -54,7 +56,7 @@ const ItemDetailsModal = () => {
         onKeyPress={(e) => e.stopPropagation()}
       >
         <div className={`${subclassname}__button-close`}>
-          <button type="button" onClick={closeModal}>X</button>
+          <button type="button" onClick={closeModal}><span>✕</span></button>
         </div>
         <div className={`${subclassname}__content`}>
           <div className={`${contentClassname}-image`}>
@@ -80,20 +82,11 @@ const ItemDetailsModal = () => {
                 </Accordion.Header>
                 <Accordion.Content>
                   <div className={`${contentClassname}-ingredients`}>
-                    <p>Colours</p>
-                    <p>{ebc}</p>
-                    ---
-                    <p>Malts</p>
-                    <p>{`${malts}.`}</p>
-                    ---
-                    <p>Hops</p>
-                    <p>{`${hops}.`}</p>
-                    ---
-                    <p>yeast</p>
-                    <p>{yeast}</p>
-                    ---
-                    <p>style</p>
-                    <p>{tagline}</p>
+                    <BrewSheetDetails title="Colours" value={ebc} />
+                    <BrewSheetDetails title="Malts" value={`${malts}.`} />
+                    <BrewSheetDetails title="Hops" value={`${hops}.`} />
+                    <BrewSheetDetails title="Yeast" value={yeast} />
+                    <BrewSheetDetails title="Style" value={tagline} isLast />
                   </div>
                 </Accordion.Content>
               </Accordion.Item>
@@ -105,11 +98,15 @@ const ItemDetailsModal = () => {
   };
 
   return (
-    <div className={`${classname}__container${showDetails ? ` ${classname}__container--visible` : ''}`} data-testid={classname}>
-      <div className={`${classname}__container-background`} onClick={closeModal} role="presentation" onKeyPress={closeModal}>
-        <ItemDetailsDialog />
+    <>
+      {itemDetailsObj && (
+      <div className={`${classname}__container${showModal ? ` ${classname}__container--visible` : ''}`} data-testid={classname}>
+        <div className={`${classname}__container-background`} onClick={closeModal} role="presentation" onKeyPress={closeModal}>
+          <ItemDetailsDialog />
+        </div>
       </div>
-    </div>
+      )}
+    </>
   );
 };
 

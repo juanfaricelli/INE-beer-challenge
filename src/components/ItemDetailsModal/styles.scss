@@ -1,5 +1,4 @@
 .item-details-modal {
-  
   &__container {
     visibility: hidden;
     opacity: 0;
@@ -15,7 +14,10 @@
     }
     &--visible {
       visibility: visible;
-      opacity: 1;  
+      opacity: 1; 
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   }
   
@@ -29,10 +31,30 @@
     margin: auto;
     display: flex;
     flex-flow: column;
+
+    &__content-description,
+    &__content-ingredients {
+      padding: 0 30px;
+    }
     
     &__button-close {
       display: flex;
       justify-content: flex-end;
+      margin-bottom: 10px;
+      button {
+        transition: 0.4s;
+        border-radius: 50%;
+        border: none;
+        position: relative;
+        background: none;
+        span {
+          line-height: 20px;
+        }
+      }
+      button:hover {
+        background-color: #eee;
+        font-weight: 600;
+      }
     }
     
     &__content {
@@ -43,7 +65,7 @@
         text-align: center;
       }
       &-information {
-        width: fit-content;
+        width: 90%;
       }
     }
   }

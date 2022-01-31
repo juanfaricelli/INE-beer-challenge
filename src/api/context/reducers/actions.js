@@ -1,0 +1,5 @@
+export default {
+  GET_ALL_BEERS: 'GET_ALL_BEERS',
+  ITEM_DETAILS: 'ITEM_DETAILS',
+  ERROR: 'ERROR',
+};

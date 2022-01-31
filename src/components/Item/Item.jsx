@@ -1,13 +1,19 @@
 /* eslint-disable object-curly-newline */
-import React from 'react';
+import React, { useContext } from 'react';
 
-import './styles.scss';
-import mockData from './item.json';
-
+import { ItemsContext } from '../../api/context/itemContext';
 import ItemDetailsShort from '../ItemDetailsShort';
 
-const Item = () => {
-  const { image_url: imageUrl, name, tagline, ibu, target_og: targetOg, abv } = mockData;
+import './styles.scss';
+
+const Item = ({ itemData, setShowModal }) => {
+  const { itemDetails } = useContext(ItemsContext);
+  const { image_url: imageUrl, name, tagline, ibu, target_og: targetOg, abv } = itemData;
+
+  const showBeerInformatinModal = () => {
+    itemDetails(itemData);
+    setShowModal(true);
+  };
 
   return (
     <div className="item" data-testid="item">
@@ -16,7 +22,7 @@ const Item = () => {
         <div className="item__name">{name}</div>
         <ItemDetailsShort {...{ ibu, targetOg, abv }} />
         <div className="item__tagline">{tagline}</div>
-        <div className="button">Beer Detail</div>
+        <button className="button" type="button" onClick={() => showBeerInformatinModal()}>Beer Detail</button>
       </div>
     </div>
   );
