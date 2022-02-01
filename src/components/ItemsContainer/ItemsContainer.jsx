@@ -1,5 +1,6 @@
 /* eslint-disable object-curly-newline */
 import React, { useState, useEffect, useContext } from 'react';
+import { arrayOf, object } from 'prop-types';
 
 import Item from '../Item';
 import ItemDetailsModal from '../ItemDetailsModal';
@@ -20,11 +21,15 @@ const ItemsContainer = ({ itemList }) => {
   return (
     <div className="items-container" data-testid="items-container">
       {itemsList.map(
-        (item) => <Item key={item.id} itemData={item} setShowModal={setShowModal} />
+        (item) => <Item key={item.id} itemData={item} setShowModal={setShowModal} />,
       )}
       <ItemDetailsModal showModal={showModal} setShowModal={setShowModal} />
     </div>
   );
+};
+
+ItemsContainer.propTypes = {
+  itemList: arrayOf([object]).isRequired,
 };
 
 export default ItemsContainer;

@@ -1,5 +1,6 @@
 /* eslint-disable object-curly-newline */
 import React, { useContext } from 'react';
+import { oneOfType, string, number, shape, func } from 'prop-types';
 
 import { ItemsContext } from '../../api/context/itemContext';
 import ItemDetailsShort from '../ItemDetailsShort';
@@ -26,6 +27,18 @@ const Item = ({ itemData, setShowModal }) => {
       </div>
     </div>
   );
+};
+
+Item.propTypes = {
+  itemData: shape({
+    image_url: string.isRequired,
+    name: string.isRequired,
+    tagline: string.isRequired,
+    ibu: oneOfType([string, number]).isRequired,
+    target_og: oneOfType([string, number]).isRequired,
+    abv: oneOfType([string, number]).isRequired,
+  }).isRequired,
+  setShowModal: func.isRequired,
 };
 
 export default Item;

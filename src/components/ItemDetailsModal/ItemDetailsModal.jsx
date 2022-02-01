@@ -1,4 +1,6 @@
+/* eslint-disable object-curly-newline */
 import React, { useContext } from 'react';
+import { bool, func, string } from 'prop-types';
 
 import { ItemsContext } from '../../api/context/itemContext';
 import ItemDetailsShort from '../ItemDetailsShort';
@@ -47,12 +49,20 @@ const ItemDetailsModal = ({ showModal, setShowModal }) => {
         {!isLast && <hr />}
       </>
     );
+    BrewSheetDetails.propTypes = {
+      title: string.isRequired,
+      value: string.isRequired,
+      isLast: bool,
+    };
+    BrewSheetDetails.defaultProps = {
+      isLast: false,
+    };
 
     return (
       <div
         className={subclassname}
         onClick={(e) => e.stopPropagation()}
-        data-testid={subclassname}
+        data-testid={classname}
         role="presentation"
         onKeyPress={(e) => e.stopPropagation()}
       >
@@ -110,6 +120,11 @@ const ItemDetailsModal = ({ showModal, setShowModal }) => {
       )}
     </>
   );
+};
+
+ItemDetailsModal.propTypes = {
+  showModal: bool.isRequired,
+  setShowModal: func.isRequired,
 };
 
 export default ItemDetailsModal;

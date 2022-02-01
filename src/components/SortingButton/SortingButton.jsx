@@ -31,13 +31,6 @@ const SortingButton = ({ label, sortBy }) => {
     <div className="sorting-button__container" data-testid="sorting-button">
       <button type="button" onClick={() => sortClickHandler()}>
         <span className="sorting-button__label">{label}</span>
-        {/* <span className={`
-        sorting-button__direction
-        sorting-button__direction--${isAsc ? 'asc' : 'desc'}
-        `}
-        >
-          ▲
-        </span> */}
         <span className="sorting-button__direction">{isAsc ? '▲' : '▼'}</span>
       </button>
     </div>

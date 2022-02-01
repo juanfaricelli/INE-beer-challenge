@@ -10,7 +10,7 @@ const Icon = ({ icon, color, width, height, className }) => {
     <div className={`icon-component icon-component__${icon}${className && ` ${className}`}`} data-testid="icon-component">
       <IconComponent width={width} height={height} color={color} />
     </div>
-  ) : null;
+  ) : <span data-testid="icon-component" />;
 };
 
 Icon.propTypes = {

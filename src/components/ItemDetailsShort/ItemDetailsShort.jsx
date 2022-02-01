@@ -1,4 +1,5 @@
 import React from 'react';
+import { oneOfType, string, number } from 'prop-types';
 
 import './styles.scss';
 
@@ -10,6 +11,15 @@ const ItemDetailsShort = ({ ibu, targetOg, abv }) => {
     </div>
   );
 
+  InfoBlock.propTypes = {
+    title: string.isRequired,
+    value: oneOfType([string, number]),
+  };
+
+  InfoBlock.defaultProps = {
+    value: 0,
+  };
+
   return (
     <div className="item__details--short">
       <InfoBlock title="IBU" value={ibu} />
@@ -17,6 +27,18 @@ const ItemDetailsShort = ({ ibu, targetOg, abv }) => {
       <InfoBlock title="ABV" value={`${abv}%`} />
     </div>
   );
+};
+
+ItemDetailsShort.propTypes = {
+  ibu: oneOfType([string, number]),
+  targetOg: oneOfType([string, number]),
+  abv: oneOfType([string, number]),
+};
+
+ItemDetailsShort.defaultProps = {
+  ibu: 0,
+  targetOg: 0,
+  abv: 0,
 };
 
 export default ItemDetailsShort;
