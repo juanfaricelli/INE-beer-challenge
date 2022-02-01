@@ -6,7 +6,7 @@ const ItemDetailsShort = ({ ibu, targetOg, abv }) => {
   const InfoBlock = ({ title, value }) => (
     <div className="item__details--data">
       <div className="item__details--data-title">{title}</div>
-      <div className="item__details--data-value">{value}</div>
+      <div className="item__details--data-value">{value || 0}</div>
     </div>
   );
 

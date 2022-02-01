@@ -1,3 +1,5 @@
+@import '../styles/commons.scss';
+
 .item-details-modal {
   &__container {
     visibility: hidden;
@@ -11,6 +13,9 @@
       width: 100%;
       height: 100%;
       background-color: rgba(0,0,0,0.4);
+      @media #{$laptops} and (orientation: landscape) {
+        padding-top: 10px;;
+      }
     }
     &--visible {
       visibility: visible;
@@ -73,6 +78,9 @@
       &-image {
         width: 35%;
         text-align: center;
+        @media #{$mobiles} and (orientation: portrait) {
+          width: 50%;
+        }
       }
       &-information {
         width: 90%;

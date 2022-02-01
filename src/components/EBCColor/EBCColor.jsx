@@ -1,5 +1,5 @@
 import React from 'react';
-import { number } from 'prop-types';
+import { oneOfType, string, number } from 'prop-types';
 
 import './styles.scss';
 
@@ -11,7 +11,7 @@ const EBCColor = ({ colorNumber }) => (
 );
 
 EBCColor.propTypes = {
-  colorNumber: number,
+  colorNumber: oneOfType([string, number]),
 };
 
 EBCColor.defaultProps = {

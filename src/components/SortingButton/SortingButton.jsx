@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
+import { string } from 'prop-types';
 
 import { ItemsContext } from '../../api/context/itemContext';
 
 import './styles.scss';
 
-const SortingBar = ({ label, sortBy }) => {
+const SortingButton = ({ label, sortBy }) => {
   const { itemsCollectionObj, itemsCollection } = useContext(ItemsContext);
   const [isAsc, setIsAsc] = useState(false);
 
@@ -27,7 +28,7 @@ const SortingBar = ({ label, sortBy }) => {
   };
 
   return (
-    <div className="sorting-button__container">
+    <div className="sorting-button__container" data-testid="sorting-button">
       <button type="button" onClick={() => sortClickHandler()}>
         <span className="sorting-button__label">{label}</span>
         {/* <span className={`
@@ -43,4 +44,9 @@ const SortingBar = ({ label, sortBy }) => {
   );
 };
 
-export default SortingBar;
+SortingButton.propTypes = {
+  label: string.isRequired,
+  sortBy: string.isRequired,
+};
+
+export default SortingButton;

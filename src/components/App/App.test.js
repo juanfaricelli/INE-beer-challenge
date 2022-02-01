@@ -2,19 +2,19 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import {
-  render, screen, fireEvent, waitForElementToBeRemoved,
+  render, screen,
 } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import Component from './app.component';
+import Component from './App';
 
 const testId = 'app';
-const LOADING_MESSAGE = 'Loading...';
-const ERROR_MESSAGE = 'Error getting data from server, please try again later...';
-const HOME_TEXT = 'INE Beer Challenge';
 
 test('App - Home content', () => {
   render(<Component />);
   expect(screen.getByTestId(testId)).toBeDefined();
-  expect(screen.getByTestId(testId)).toHaveTextContent(HOME_TEXT);
+  expect(screen.getByTestId(testId)).toHaveClass('app__container');
+  expect(screen.getByTestId('header')).toBeDefined();
+  expect(screen.getByTestId('sorting-bar')).toBeDefined();
+  expect(screen.getByTestId('items-container')).toBeDefined();
 });
