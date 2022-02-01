@@ -1,0 +1,82 @@
+@import '../styles/commons.scss';
+
+.item {
+  width: 220px;
+  height: 370px;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  padding: 20px;
+  border-radius: 10%;
+  align-items: center;
+  font-weight: bolder;
+
+  background: radial-gradient(ellipse at center,  rgba(255,255,255,0.80) 40%,rgba(187,187,187,0.65) 65%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6ffffff', endColorstr='#00000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  text-align: center;
+  margin-bottom: 5px;
+  justify-self: center;
+  
+  img {
+    height: 60%;
+    width: 100%;
+    object-fit: contain;
+  }
+  
+  &__name {
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-size: xx-large;
+  }
+  
+  .button {
+    background: #000000;
+    background-image: linear-gradient(to bottom, #999, #787878);
+    border-radius: 28px;
+    border: none;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    margin: 10px auto;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-image: linear-gradient(to bottom, #424242, #a8a8a8);
+    text-decoration: none;
+  }
+  
+  &__details {
+    width: 100%;
+    .item {
+      &__name,
+      &__tagline {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+  
+  @media #{$mobiles} {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    img {
+      grid-row-start: 1;
+      grid-row-end: 2;
+      height: inherit;
+      width: 100px;
+      margin: auto;
+    }
+    &__details {
+      width: 200px;
+      height: 55%;
+      display: flex;
+      justify-content: space-around;
+      flex-flow: column;
+    }
+  }
+}

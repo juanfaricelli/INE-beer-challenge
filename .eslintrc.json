@@ -45,6 +45,14 @@
                 ]
             }
         ],
-        "react/display-name": 1
+        "react/display-name": 1,
+        "object-curly-newline": [
+            "error",
+            {
+                "ObjectExpression": "always",
+                "ObjectPattern": { "multiline": true },
+                "ExportDeclaration": { "multiline": true, "minProperties": 3 }
+            }
+        ]
     }
 }

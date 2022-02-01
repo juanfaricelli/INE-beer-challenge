@@ -4,29 +4,16 @@ html,
 body {
   height: 100%;
   background-color: $color-grey-steam;
+  margin: 0;
+  
+  background: url(../../assets/wallpaper.jpeg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .app {
   &__container {
-    text-align: center;
-    padding: 20px;
-
-    h1, h3 {
-      border: none;
-      margin: 20px auto ;
-      padding: 0 0;
-      font-family: Tahoma,Geneva,Arial,sans-serif;
-      font-weight: 700;
-      line-height: 1.3em;
-      text-transform: none;
-      color: $color-black;
-    
-      div {
-        font-size: 14px;
-      }
-    }
-
-    h3 {
-      margin: 0;
-    }
+    font-family: monospace;
   }
 }

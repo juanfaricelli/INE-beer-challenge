@@ -1,0 +1,32 @@
+@import '../styles/commons.scss';
+
+.items-container {
+  padding: 1% 10em;
+  display: grid;
+  @media #{$mobiles} {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 1% 2em;
+  }
+  @media #{$mobiles} and (orientation: landscape) {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 1% 2em;
+  }
+  @media #{$tablets} {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1% 5em;
+  }
+  @media #{$laptops} and (orientation: landscape) {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1% 5%;
+  }
+  @media #{$laptops} and (orientation: portrait) {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1% 5%;
+  }
+  @media #{$desktops}, #{$desktops-widescreen} {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media #{$screens-xl} {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

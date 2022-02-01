@@ -1,0 +1,14 @@
+@import '../styles/commons.scss';
+
+.sorting-bar__container {
+  display: flex;
+  padding: 0 10%;
+  background: rgba(18, 18, 19, 0.2);
+  align-items: center;
+  color: #fff;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  @media #{$mobiles} {
+    flex-flow: column;
+  }
+}
