@@ -3,31 +3,27 @@ import React, { useState, useEffect, useContext } from 'react';
 
 import Item from '../Item';
 import ItemDetailsModal from '../ItemDetailsModal';
-import SortingBar from '../SortingBar';
 import { ItemsContext } from '../../api/context/itemContext';
 
 import './styles.scss';
 
 const ItemsContainer = ({ itemList }) => {
+  const { itemsCollection } = useContext(ItemsContext);
   const [showModal, setShowModal] = useState(false);
-  const [itemsList, setItemList] = useState(itemList || []);
-  const [sortedList, setSortedList] = useState(false);
+  const [itemsList, setItemsList] = useState(itemList || []);
 
   useEffect(() => {
-    setItemList(itemList);
-    setSortedList(false);
-  }, [itemList, sortedList]);
+    setItemsList(itemList);
+    itemsCollection(itemList);
+  }, [itemList]);
 
   return (
-    <>
-      <SortingBar collection={itemsList} setItemList={setItemList} setSortedList={setSortedList} />
-      <div className="items-container" data-testid="items-container">
-        {itemsList.map(
-          (item) => <Item key={item.id} itemData={item} setShowModal={setShowModal} />
-        )}
-        <ItemDetailsModal {...{ showModal, setShowModal }} />
-      </div>
-    </>
+    <div className="items-container" data-testid="items-container">
+      {itemsList.map(
+        (item) => <Item key={item.id} itemData={item} setShowModal={setShowModal} />
+      )}
+      <ItemDetailsModal showModal={showModal} setShowModal={setShowModal} />
+    </div>
   );
 };
 

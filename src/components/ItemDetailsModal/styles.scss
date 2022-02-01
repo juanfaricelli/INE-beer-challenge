@@ -31,12 +31,19 @@
     margin: auto;
     display: flex;
     flex-flow: column;
-
-    &__content-description,
-    &__content-ingredients {
-      padding: 0 30px;
-      &--title {
-        font-weight: bold;
+    
+    &__content {
+      &-title {
+        font-family: monospace;
+        font-weight: bolder;
+        font-size: 15px;
+      }
+      &-description,
+      &-ingredients {
+        padding: 0 30px;
+        &--title {
+          font-weight: bold;
+        }
       }
     }
     

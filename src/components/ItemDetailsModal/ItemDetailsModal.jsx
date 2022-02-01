@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import { ItemsContext } from '../../api/context/itemContext';
 import ItemDetailsShort from '../ItemDetailsShort';
@@ -79,7 +79,7 @@ const ItemDetailsModal = ({ showModal, setShowModal }) => {
               </Accordion.Item>
               <Accordion.Item>
                 <Accordion.Header>
-                  Brew Sheet
+                  <div className={`${contentClassname}-title`}>Brew Sheet</div>
                 </Accordion.Header>
                 <Accordion.Content>
                   <div className={`${contentClassname}-ingredients`}>

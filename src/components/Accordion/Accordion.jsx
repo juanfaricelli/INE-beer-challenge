@@ -3,7 +3,7 @@ import { arrayOf, node, func, number, bool } from 'prop-types';
 
 import './styles.scss';
 
-const Header = ({ children, itemNumber, setIsActiveItem }) => (
+const Header = ({ children, itemNumber, setIsActiveItem, isActiveItem }) => (
   <div>
     <button
       type="button"
@@ -13,6 +13,7 @@ const Header = ({ children, itemNumber, setIsActiveItem }) => (
       }}
     >
       {children}
+      {itemNumber === isActiveItem ? <>-</> : <>+</>}
     </button>
   </div>
 );
@@ -21,6 +22,7 @@ Header.propTypes = {
   children: arrayOf(node).isRequired,
   itemNumber: number.isRequired,
   setIsActiveItem: func.isRequired,
+  isActiveItem: bool.isRequired,
 };
 
 const Content = ({ children, isActiveItem, itemNumber }) => {
@@ -54,6 +56,7 @@ const Item = ({ children, itemNumber, isActiveItem, setIsActiveItem }) => {
       }
       return React.cloneElement(component, {
         itemNumber,
+        isActiveItem,
         setIsActiveItem,
       });
     }

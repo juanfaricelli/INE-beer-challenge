@@ -8,15 +8,11 @@
   font-size: 24px;
   font-weight: bold;
   color: #e5e5e5;
-  .button {
+  &__title {
     height: 60px;
     align-items: center;
     display: flex;
     padding: 0 10px;
-    &:hover {
-      background: rgba(18, 18, 18, 0.2);
-      color: #999;
-    }
   }
 
   .icon-component__brewdoglogo {

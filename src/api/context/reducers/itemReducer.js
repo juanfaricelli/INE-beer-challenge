@@ -8,6 +8,11 @@ export default (state, action) => {
         ...state,
         itemDetailsObj: action.payload,
       };
+    case actions.ITEMS_COLLECTION:
+      return {
+        ...state,
+        itemsCollectionObj: action.payload,
+      };
     case actions.ERROR:
       return {
         ...state,

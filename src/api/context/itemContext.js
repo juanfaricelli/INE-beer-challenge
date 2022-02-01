@@ -30,10 +30,25 @@ const ItemsProvider = ({ children }) => {
     }
   };
 
+  const itemsCollection = (collection = []) => {
+    try {
+      dispatch({
+        type: actions.ITEMS_COLLECTION,
+        payload: collection,
+      });
+    } catch (error) {
+      dispatch({
+        type: actions.ERROR,
+        payload: error.response.data.error,
+      });
+    }
+  };
+
   return (
     <ItemsContext.Provider value={{
       ...state,
       itemDetails,
+      itemsCollection,
     }}
     >
       {children}

@@ -6,7 +6,7 @@ import './styles.scss';
 const Header = () => (
   <div className="header" data-testid="header">
     <Icon icon="brewdoglogo" height={60} />
-    <div className="button">Beers List</div>
+    <div className="header__title">Beers List</div>
   </div>
 );
 
