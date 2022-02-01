@@ -62,12 +62,12 @@ const ItemDetailsModal = ({ showModal, setShowModal }) => {
       <div
         className={subclassname}
         onClick={(e) => e.stopPropagation()}
-        data-testid={classname}
+        data-testid={subclassname}
         role="presentation"
         onKeyPress={(e) => e.stopPropagation()}
       >
         <div className={`${subclassname}__button-close`}>
-          <button type="button" onClick={closeModal}><span>✕</span></button>
+          <button data-testid={`${classname}-button-close`} type="button" onClick={closeModal}><span>✕</span></button>
         </div>
         <div className={`${subclassname}__content`}>
           <div className={`${contentClassname}-image`}>

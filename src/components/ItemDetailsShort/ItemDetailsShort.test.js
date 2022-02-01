@@ -4,10 +4,10 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import { ItemsContext } from '../../api/context/itemContext';
-import Component from './ItemsContainer';
+import Component from './ItemDetailsShort';
 import mockedItem from '../Item/item.json';
 
-const testId = 'items-container';
+const testId = 'item-details-short';
 let props = {
 };
 
@@ -32,11 +32,9 @@ beforeAll(() => {
   };
 });
 
-test('renders header', () => {
+test('renders ItemDetailsShort', () => {
   customRender(<Component itemList={props.itemList} />);
   const element = screen.getByTestId(testId);
   expect(element).toBeInTheDocument();
-  expect(element).toHaveClass('items-container');
-  const items = screen.queryAllByTestId('item');
-  expect(items).toHaveLength(props.itemList.length);
+  expect(element).toHaveClass('item__details--short');
 });

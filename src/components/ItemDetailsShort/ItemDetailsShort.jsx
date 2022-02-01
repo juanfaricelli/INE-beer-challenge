@@ -21,7 +21,7 @@ const ItemDetailsShort = ({ ibu, targetOg, abv }) => {
   };
 
   return (
-    <div className="item__details--short">
+    <div className="item__details--short" data-testid="item-details-short">
       <InfoBlock title="IBU" value={ibu} />
       <InfoBlock title="OG" value={targetOg} />
       <InfoBlock title="ABV" value={`${abv}%`} />

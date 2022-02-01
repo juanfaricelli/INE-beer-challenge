@@ -3,9 +3,9 @@ const React = require('react');
 const { render, screen } = require('@testing-library/react');
 require('@testing-library/jest-dom/extend-expect');
 
-const Component = require('./index');
+const Component = require('./SortingButton');
 
-const testId = 'icon-component';
+const testId = 'sorting-button';
 
 beforeAll(() => {
   props = {};

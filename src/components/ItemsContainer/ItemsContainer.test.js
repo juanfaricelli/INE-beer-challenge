@@ -32,7 +32,7 @@ beforeAll(() => {
   };
 });
 
-test('renders header', () => {
+test('renders ItemsContainer', () => {
   customRender(<Component itemList={props.itemList} />);
   const element = screen.getByTestId(testId);
   expect(element).toBeInTheDocument();
