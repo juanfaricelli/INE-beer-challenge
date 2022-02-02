@@ -1,15 +1,11 @@
 /* eslint-disable no-undef */
-const React = require('react');
-const { render, screen } = require('@testing-library/react');
-require('@testing-library/jest-dom/extend-expect');
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 
-const Component = require('./SortingBar');
+import Component from './SortingBar';
 
 const testId = 'sorting-bar';
-
-// beforeAll(() => {
-//   props = {};
-// });
 
 test('Sorting Bar content', () => {
   render(<Component />);

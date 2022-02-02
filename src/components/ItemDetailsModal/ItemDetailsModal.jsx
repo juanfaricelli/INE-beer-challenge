@@ -74,7 +74,7 @@ const ItemDetailsModal = ({ showModal, setShowModal }) => {
             <img src={imageUrl} alt={name} height="300" />
           </div>
           <div className={`${contentClassname}-information`}>
-            <Accordion>
+            <Accordion key={name}>
               <Accordion.Item>
                 <Accordion.Header>
                   <div className={`${contentClassname}-title`}>{name}</div>

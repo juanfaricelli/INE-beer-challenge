@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { arrayOf, node, func, number, bool } from 'prop-types';
+import { arrayOf, any, element, func, number } from 'prop-types';
 
 import './styles.scss';
 
 const Header = ({ children, itemNumber, setIsActiveItem, isActiveItem }) => (
-  <div>
+  <div className="accordion__header" data-testid="accordion-header">
     <button
       type="button"
       className="accordion"
@@ -19,10 +19,15 @@ const Header = ({ children, itemNumber, setIsActiveItem, isActiveItem }) => (
 );
 
 Header.propTypes = {
-  children: arrayOf(node).isRequired,
-  itemNumber: number.isRequired,
-  setIsActiveItem: func.isRequired,
-  isActiveItem: bool.isRequired,
+  children: element.isRequired,
+  itemNumber: number,
+  setIsActiveItem: func,
+  isActiveItem: number,
+};
+Header.defaultProps = {
+  itemNumber: null,
+  setIsActiveItem: null,
+  isActiveItem: null,
 };
 
 const Content = ({ children, isActiveItem, itemNumber }) => {
@@ -33,16 +38,24 @@ const Content = ({ children, isActiveItem, itemNumber }) => {
   }, [isActiveItem, itemNumber]);
 
   return (
-    <div className={`panel${isActive ? '--active' : ''}`}>
+    <div
+      className={`accordion__content panel${isActive ? '--active' : ''}`}
+      data-testid="accordion-content"
+    >
       { children }
     </div>
   );
 };
 
 Content.propTypes = {
-  children: arrayOf(node).isRequired,
-  isActiveItem: bool.isRequired,
-  itemNumber: number.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  children: any.isRequired,
+  isActiveItem: number,
+  itemNumber: number,
+};
+Content.defaultProps = {
+  itemNumber: null,
+  isActiveItem: null,
 };
 
 const Item = ({ children, itemNumber, isActiveItem, setIsActiveItem }) => {
@@ -50,11 +63,13 @@ const Item = ({ children, itemNumber, isActiveItem, setIsActiveItem }) => {
     if (React.isValidElement(component)) {
       if (component.type.name === 'Content') {
         return React.cloneElement(component, {
+          key: `content-${itemNumber}`,
           itemNumber,
           isActiveItem,
         });
       }
       return React.cloneElement(component, {
+        key: `header-${itemNumber}`,
         itemNumber,
         isActiveItem,
         setIsActiveItem,
@@ -64,17 +79,22 @@ const Item = ({ children, itemNumber, isActiveItem, setIsActiveItem }) => {
   };
 
   return (
-    <>
+    <div className="accordion__item" data-testid="accordion-item">
       {children.map((child) => componentStateInjection(child))}
-    </>
+    </div>
   );
 };
 
 Item.propTypes = {
-  children: arrayOf(node).isRequired,
-  itemNumber: number.isRequired,
-  isActiveItem: bool.isRequired,
-  setIsActiveItem: func.isRequired,
+  children: arrayOf(element).isRequired,
+  itemNumber: number,
+  isActiveItem: number,
+  setIsActiveItem: func,
+};
+Item.defaultProps = {
+  itemNumber: null,
+  isActiveItem: null,
+  setIsActiveItem: null,
 };
 
 const Accordion = ({ children }) => {
@@ -83,6 +103,7 @@ const Accordion = ({ children }) => {
   const addItemNumberProp = (component, i) => {
     if (React.isValidElement(component)) {
       return React.cloneElement(component, {
+        key: `item-${i}`,
         itemNumber: i,
         isActiveItem,
         setIsActiveItem,
@@ -92,14 +113,14 @@ const Accordion = ({ children }) => {
   };
 
   return (
-    <>
-      {children.map((child, i) => addItemNumberProp(child, i))}
-    </>
+    <div className="accordion__container" data-testid="accordion">
+      {children && children.map((child, i) => addItemNumberProp(child, i))}
+    </div>
   );
 };
 
 Accordion.propTypes = {
-  children: arrayOf(node).isRequired,
+  children: arrayOf(element).isRequired,
 };
 
 Accordion.Item = Item;
