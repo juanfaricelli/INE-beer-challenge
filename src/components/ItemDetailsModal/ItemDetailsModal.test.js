@@ -38,7 +38,6 @@ test('renders ItemDetailsModal', () => {
   customRender(<Component showModal />);
   const element = screen.getByTestId(testId);
   expect(element).toBeInTheDocument();
-  screen.debug();
 });
 
 test('close ItemDetailsModal', () => {
@@ -46,5 +45,6 @@ test('close ItemDetailsModal', () => {
   customRender(<Component showModal setShowModal={setShowModal} />);
   const closeButtonElement = screen.getByTestId('item-details-modal-button-close');
   fireEvent.click(closeButtonElement);
+  expect(props.showModal).toBe(false);
   expect(props.showModal).toBe(false);
 });
